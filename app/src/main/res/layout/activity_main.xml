@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="5dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/series_placeholder"
+        style="@style/HeaderText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_placeholder"
+        style="@style/ContentText"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?android:listDivider"
+        android:layout_marginVertical="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_placeholder"
+        style="@style/HeaderText"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/graph_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <github.mjksabit.bueteduproject.Graph.GraphView
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_unknown"
+            app:layout_constraintDimensionRatio="1"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/default_stick"
+            android:layout_width="@dimen/add_new_width"
+            android:layout_height="@dimen/new_stick_height"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:src="@drawable/match_stick"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/default_coin"
+            app:layout_constraintEnd_toEndOf="@+id/default_coin" />
+
+        <ImageView
+            android:id="@+id/default_coin"
+            android:layout_width="@dimen/add_new_width"
+            android:layout_height="@dimen/add_new_width"
+            android:layout_alignStart="@id/add_button"
+            android:layout_alignLeft="@id/add_button"
+            android:layout_alignBottom="@id/add_button"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:src="@drawable/coin_skin_1"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/add_button"
+            app:layout_constraintEnd_toEndOf="@+id/add_button" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_corner_margin"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="toggleAddFAB"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icons8_add"
+            android:visibility="visible"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:pressedTranslationZ="12dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/statement_placeholder"
+        style="@style/ContentText"
+        />
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="add_new_width">60dp</dimen>
+    <dimen name="new_stick_height">100dp</dimen>
+    <dimen name="fab_margin">32dp</dimen>
+    <dimen name="fab_corner_margin">20dp</dimen>
+    <dimen name="size_unknown">0dp</dimen>
+
+    <dimen name="heading_text">26sp</dimen>
+    <dimen name="heading_margin">5dp</dimen>
+
+    <dimen name="content_text">14sp</dimen>
+    <dimen name="content_padding">12dp</dimen>
+</resources>
