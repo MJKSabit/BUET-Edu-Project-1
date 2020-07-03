@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -205,6 +206,7 @@ public class GraphView extends View implements GraphObject {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        ViewParent parent = getParent();
         Log.d(TAG, "onTouchEvent: Touched "+ lastLocationRaw);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
@@ -241,6 +243,8 @@ public class GraphView extends View implements GraphObject {
                 break;
             }
         }
+
+        parent.requestDisallowInterceptTouchEvent(true);
 
         invalidate();
 
