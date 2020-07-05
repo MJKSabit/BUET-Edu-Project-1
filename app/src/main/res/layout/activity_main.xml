@@ -14,71 +14,68 @@
     tools:context=".MainActivity"
     android:padding="5dp">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/series_placeholder"-->
-<!--        style="@style/HeaderText" />-->
-
-    <HorizontalScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.chip.ChipGroup
+        android:layout_height="wrap_content"
+        >
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fadeScrollbars="true"
-            android:fadingEdge="horizontal"
-            android:isScrollContainer="true"
-            app:singleLine="true"
-            android:id="@+id/tags"
-            >
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/series_placeholder"
-                app:chipIconEnabled="false"
-                />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/series_placeholder"
-                app:chipIconEnabled="false"
-                />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/series_placeholder"
-                app:chipIconEnabled="false"
-                />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/series_placeholder"
-                app:chipIconEnabled="false"
-                />
+            android:scrollbarFadeDuration="@android:integer/config_shortAnimTime">
 
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="true"
+                android:fadingEdge="horizontal"
+                app:singleLine="true"
+                android:id="@+id/tags"
+                >
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/series_placeholder"
+                    app:chipIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/series_placeholder"
+                    app:chipIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/series_placeholder"
+                    app:chipIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/series_placeholder"
+                    app:chipIconEnabled="false"
+                    />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings"
+            android:layout_alignParentEnd="true"
+            android:onClick="showDetails"
+            />
 
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/description_placeholder"-->
-<!--        style="@style/ContentText"/>-->
+    </RelativeLayout>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="?android:listDivider"
         android:layout_marginVertical="10dp" />
-
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/title_placeholder"-->
-<!--        style="@style/HeaderText"/>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/graph_holder"

@@ -141,6 +141,10 @@ public class GraphView extends View implements GraphObject {
 //        Toast.makeText(getContext(), point.toString(), Toast.LENGTH_SHORT).show();
     }
 
+    public void addCoin(Point2D gridPoint, String imageName, boolean isMoveable) {
+        coins.add(new Coin(isMoveable, unit, coinImages.get(imageName), gridPoint));
+    }
+
     public void addStick(float x, float y) {
         int[] myLoc = new int[2];
         getLocationOnScreen(myLoc);

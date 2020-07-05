@@ -4,15 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.DragEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         String title = getResources().getString(R.string.title_placeholder);
         getSupportActionBar().setTitle(title);
+
     }
 
     public void toggleAddFAB(View view) {
@@ -102,5 +108,15 @@ public class MainActivity extends AppCompatActivity {
 //            addToBoard.hide();
         }
         isOpen = !isOpen;
+    }
+
+    public void showDetails(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.series_placeholder);
+        builder.setMessage(R.string.description_placeholder);
+        AlertDialog dialog = builder.create();
+
+        dialog.setCancelable(true);
+        dialog.show();
     }
 }
