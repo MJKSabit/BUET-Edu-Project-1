@@ -14,17 +14,59 @@
     tools:context=".MainActivity"
     android:padding="5dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/series_placeholder"
-        style="@style/HeaderText" />
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/series_placeholder"-->
+<!--        style="@style/HeaderText" />-->
 
-    <TextView
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/description_placeholder"
-        style="@style/ContentText"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="true"
+            android:fadingEdge="horizontal"
+            android:isScrollContainer="true"
+            app:singleLine="true"
+            android:id="@+id/tags"
+            >
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/series_placeholder"
+                app:chipIconEnabled="false"
+                />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/series_placeholder"
+                app:chipIconEnabled="false"
+                />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/series_placeholder"
+                app:chipIconEnabled="false"
+                />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/series_placeholder"
+                app:chipIconEnabled="false"
+                />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/description_placeholder"-->
+<!--        style="@style/ContentText"/>-->
 
     <Space
         android:layout_width="match_parent"
@@ -32,11 +74,11 @@
         android:background="?android:listDivider"
         android:layout_marginVertical="10dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_placeholder"
-        style="@style/HeaderText"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/title_placeholder"-->
+<!--        style="@style/HeaderText"/>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/graph_holder"
@@ -90,6 +132,7 @@
             android:layout_margin="@dimen/fab_corner_margin"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:backgroundTint="#66BB6A"
             android:focusable="true"
             android:onClick="toggleAddFAB"
             android:scaleType="fitCenter"
@@ -119,7 +162,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/HeaderText"
-        android:text="Ans"/>
+        android:text="@string/answer_text"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/content_padding">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/answer_text"
+            android:textSize="@dimen/ans_text" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/WarningText"
+        android:background="@drawable/warning_background"
+        android:id="@+id/answer_constrain"
+        android:text="@string/constrain_placeholder"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        style="@style/Button" />
 
 </LinearLayout>
 </ScrollView>

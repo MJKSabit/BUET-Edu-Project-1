@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-
-
+        String title = getResources().getString(R.string.title_placeholder);
+        getSupportActionBar().setTitle(title);
     }
 
     public void toggleAddFAB(View view) {

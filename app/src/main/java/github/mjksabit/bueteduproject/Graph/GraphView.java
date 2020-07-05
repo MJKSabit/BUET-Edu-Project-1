@@ -138,7 +138,7 @@ public class GraphView extends View implements GraphObject {
         currentObject = new Coin(true, unit, coinImages.get("1"), point);
         coins.add((Coin) currentObject);
         invalidate();
-        Toast.makeText(getContext(), point.toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), point.toString(), Toast.LENGTH_SHORT).show();
     }
 
     public void addStick(float x, float y) {
@@ -154,7 +154,7 @@ public class GraphView extends View implements GraphObject {
         currentObject = new Stick(true, unit, start, end);
         sticks.add((Stick) currentObject);
         invalidate();
-        Toast.makeText(getContext(), getGridPoint.toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), getGridPoint.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

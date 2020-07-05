@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Button">
+        <item name="background">@drawable/button_background</item>
+        <item name="android:elevation">5dp</item>
+    </style>
+
+    <style name="Base.Widget.MaterialComponents.Chip.Choice">
+        <item name="backgroundTint">#66BB6A</item>
+    </style>
+</resources>

@@ -11,4 +11,9 @@
 
     <dimen name="content_text">14sp</dimen>
     <dimen name="content_padding">12dp</dimen>
+
+    <dimen name="warning_v_padding">8dp</dimen>
+    <dimen name="warning_l_padding">26dp</dimen>
+
+    <dimen name="ans_text">18sp</dimen>
 </resources>
