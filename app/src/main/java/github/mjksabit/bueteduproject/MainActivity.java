@@ -83,113 +83,232 @@ public class MainActivity extends AppCompatActivity {
 
         String problemSchema = "{\n" +
                 "    \"bgColor\": \"0xffffffff\",\n" +
-                "    \"transX\": -2050.138769192783,\n" +
-                "    \"transY\": -2277.6358217084357,\n" +
+                "    \"transX\": -2268.2892489893543,\n" +
+                "    \"transY\": -2267.64617092752,\n" +
                 "    \"indicatorColor\": \"0x32cd32ff\",\n" +
                 "    \"elements\": [\n" +
                 "      {\n" +
-                "        \"indTailY\": 23,\n" +
                 "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 21,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 25,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 21,\n" +
-                "        \"type\": \"matchStick\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"indTailY\": 23,\n" +
-                "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 23,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 23,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 21,\n" +
-                "        \"type\": \"matchStick\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"indTailY\": 25,\n" +
-                "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 23,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 25,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 21,\n" +
-                "        \"type\": \"matchStick\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"indTailY\": 23,\n" +
-                "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 23,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 25,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 23,\n" +
-                "        \"type\": \"matchStick\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"indTailY\": 23,\n" +
-                "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 25,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 23,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 23,\n" +
-                "        \"type\": \"matchStick\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"indTailY\": 27,\n" +
-                "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 21,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 25,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 21,\n" +
-                "        \"type\": \"matchStick\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"indTailY\": 27,\n" +
-                "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 23,\n" +
-                "        \"isMust\": true,\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
                 "        \"indHeadY\": 27,\n" +
-                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 30,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 27,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 30,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 29,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 20,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 20,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 21,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
                 "        \"indHeadX\": 21,\n" +
                 "        \"type\": \"matchStick\"\n" +
                 "      },\n" +
                 "      {\n" +
-                "        \"indTailY\": 27,\n" +
                 "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 25,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 27,\n" +
-                "        \"useSkin\": true,\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 23,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
                 "        \"indHeadX\": 23,\n" +
                 "        \"type\": \"matchStick\"\n" +
                 "      },\n" +
                 "      {\n" +
-                "        \"indTailY\": 25,\n" +
                 "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 22,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 22,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
                 "        \"indTailX\": 25,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 23,\n" +
-                "        \"useSkin\": true,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
                 "        \"indHeadX\": 25,\n" +
                 "        \"type\": \"matchStick\"\n" +
                 "      },\n" +
                 "      {\n" +
-                "        \"indTailY\": 27,\n" +
                 "        \"fillColor\": \"0x0090ffff\",\n" +
-                "        \"indTailX\": 25,\n" +
-                "        \"isMust\": true,\n" +
-                "        \"indHeadY\": 25,\n" +
-                "        \"useSkin\": true,\n" +
-                "        \"indHeadX\": 25,\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 24,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 24,\n" +
                 "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 26,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 26,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 27,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 27,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 28,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 28,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 29,\n" +
+                "        \"indTailX\": 29,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 20,\n" +
+                "        \"indHeadX\": 29,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 21,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 21,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 22,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 22,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 23,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 23,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 24,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 24,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 25,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 25,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 26,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 26,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 27,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 27,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailY\": 28,\n" +
+                "        \"indTailX\": 30,\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"indHeadY\": 28,\n" +
+                "        \"indHeadX\": 20,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"outerColor\": \"0x0090ffff\",\n" +
+                "        \"innerColor\": \"0x004588ff\",\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"skin\": 9,\n" +
+                "        \"indX\": 20,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indY\": 29,\n" +
+                "        \"type\": \"coin\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"outerColor\": \"0x0090ffff\",\n" +
+                "        \"innerColor\": \"0x004588ff\",\n" +
+                "        \"cantMove\": true,\n" +
+                "        \"skin\": 10,\n" +
+                "        \"indX\": 27,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indY\": 21,\n" +
+                "        \"type\": \"coin\"\n" +
                 "      }\n" +
                 "    ],\n" +
+                "    \"isIndicator\": true,\n" +
                 "    \"lineColor\": \"0x00ff00ff\",\n" +
-                "    \"zoom\": 500,\n" +
+                "    \"zoom\": 1400,\n" +
                 "    \"defaultMatchStick\": {\n" +
                 "      \"fillColor\": \"0x0090ffff\",\n" +
                 "      \"isMust\": true,\n" +
@@ -198,7 +317,9 @@ public class MainActivity extends AppCompatActivity {
                 "    \"defaultCoin\": {\n" +
                 "      \"outerColor\": \"0x0090ffff\",\n" +
                 "      \"isMust\": true,\n" +
-                "      \"innerColor\": \"0x004588ff\"\n" +
+                "      \"innerColor\": \"0x004588ff\",\n" +
+                "      \"skin\": 7,\n" +
+                "      \"useSkin\": true\n" +
                 "    },\n" +
                 "    \"lineOpacity\": 0.25\n" +
                 "  }";

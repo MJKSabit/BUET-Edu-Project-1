@@ -34,7 +34,7 @@ public class GraphView extends View implements GraphObject {
     ArrayList<Coin> coins = new ArrayList<>();
     ArrayList<Stick> sticks = new ArrayList<>();
 
-    private static final Map<String, Bitmap> coinImages = new HashMap<>();
+    private static final Map<Integer, Bitmap> coinImages = new HashMap<>();
 
     // In Raw Point == (0,0) @ Grid Point
     private Point2D originLocation;
@@ -61,46 +61,46 @@ public class GraphView extends View implements GraphObject {
         gridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         gridPaint.setColor(0x99FF0000);
 
-        coinImages.put("a", BitmapFactory.decodeResource(getResources(), R.drawable.a));
-        coinImages.put("b", BitmapFactory.decodeResource(getResources(), R.drawable.b));
-        coinImages.put("c", BitmapFactory.decodeResource(getResources(), R.drawable.c));
-        coinImages.put("d", BitmapFactory.decodeResource(getResources(), R.drawable.d));
-        coinImages.put("e", BitmapFactory.decodeResource(getResources(), R.drawable.e));
-        coinImages.put("f", BitmapFactory.decodeResource(getResources(), R.drawable.f));
-        coinImages.put("g", BitmapFactory.decodeResource(getResources(), R.drawable.g));
-        coinImages.put("h", BitmapFactory.decodeResource(getResources(), R.drawable.h));
-        coinImages.put("i", BitmapFactory.decodeResource(getResources(), R.drawable.i));
-        coinImages.put("j", BitmapFactory.decodeResource(getResources(), R.drawable.j));
+        coinImages.put(14, BitmapFactory.decodeResource(getResources(), R.drawable.a));
+        coinImages.put(15, BitmapFactory.decodeResource(getResources(), R.drawable.b));
+        coinImages.put(16, BitmapFactory.decodeResource(getResources(), R.drawable.c));
+        coinImages.put(17, BitmapFactory.decodeResource(getResources(), R.drawable.d));
+        coinImages.put(18, BitmapFactory.decodeResource(getResources(), R.drawable.e));
+        coinImages.put(19, BitmapFactory.decodeResource(getResources(), R.drawable.f));
+        coinImages.put(20, BitmapFactory.decodeResource(getResources(), R.drawable.g));
+        coinImages.put(21, BitmapFactory.decodeResource(getResources(), R.drawable.h));
+        coinImages.put(22, BitmapFactory.decodeResource(getResources(), R.drawable.i));
+        coinImages.put(23, BitmapFactory.decodeResource(getResources(), R.drawable.j));
 
-        coinImages.put("k", BitmapFactory.decodeResource(getResources(), R.drawable.k));
-        coinImages.put("l", BitmapFactory.decodeResource(getResources(), R.drawable.l));
-        coinImages.put("m", BitmapFactory.decodeResource(getResources(), R.drawable.m));
-        coinImages.put("n", BitmapFactory.decodeResource(getResources(), R.drawable.n));
-        coinImages.put("o", BitmapFactory.decodeResource(getResources(), R.drawable.o));
-        coinImages.put("p", BitmapFactory.decodeResource(getResources(), R.drawable.p));
-        coinImages.put("q", BitmapFactory.decodeResource(getResources(), R.drawable.q));
-        coinImages.put("r", BitmapFactory.decodeResource(getResources(), R.drawable.r));
-        coinImages.put("s", BitmapFactory.decodeResource(getResources(), R.drawable.s));
-        coinImages.put("t", BitmapFactory.decodeResource(getResources(), R.drawable.t));
+        coinImages.put(24, BitmapFactory.decodeResource(getResources(), R.drawable.k));
+        coinImages.put(25, BitmapFactory.decodeResource(getResources(), R.drawable.l));
+        coinImages.put(26, BitmapFactory.decodeResource(getResources(), R.drawable.m));
+        coinImages.put(27, BitmapFactory.decodeResource(getResources(), R.drawable.n));
+        coinImages.put(28, BitmapFactory.decodeResource(getResources(), R.drawable.o));
+        coinImages.put(29, BitmapFactory.decodeResource(getResources(), R.drawable.p));
+        coinImages.put(30, BitmapFactory.decodeResource(getResources(), R.drawable.q));
+        coinImages.put(31, BitmapFactory.decodeResource(getResources(), R.drawable.r));
+        coinImages.put(32, BitmapFactory.decodeResource(getResources(), R.drawable.s));
+        coinImages.put(33, BitmapFactory.decodeResource(getResources(), R.drawable.t));
 
-        coinImages.put("u", BitmapFactory.decodeResource(getResources(), R.drawable.u));
-        coinImages.put("v", BitmapFactory.decodeResource(getResources(), R.drawable.v));
-        coinImages.put("w", BitmapFactory.decodeResource(getResources(), R.drawable.w));
-        coinImages.put("x", BitmapFactory.decodeResource(getResources(), R.drawable.x));
-        coinImages.put("y", BitmapFactory.decodeResource(getResources(), R.drawable.y));
-        coinImages.put("z", BitmapFactory.decodeResource(getResources(), R.drawable.z));
+        coinImages.put(34, BitmapFactory.decodeResource(getResources(), R.drawable.u));
+        coinImages.put(35, BitmapFactory.decodeResource(getResources(), R.drawable.v));
+        coinImages.put(36, BitmapFactory.decodeResource(getResources(), R.drawable.w));
+        coinImages.put(37, BitmapFactory.decodeResource(getResources(), R.drawable.x));
+        coinImages.put(38, BitmapFactory.decodeResource(getResources(), R.drawable.y));
+        coinImages.put(39, BitmapFactory.decodeResource(getResources(), R.drawable.z));
 
-        coinImages.put("1", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_1));
-        coinImages.put("2", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_2));
-        coinImages.put("3", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_3));
-        coinImages.put("4", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_4));
-        coinImages.put("5", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_5));
-        coinImages.put("6", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_6));
-        coinImages.put("7", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_7));
-        coinImages.put("8", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_8));
-        coinImages.put("9", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_9));
-        coinImages.put("10", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_10));
-        coinImages.put("11", BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_11));
+        coinImages.put(0, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_1));
+        coinImages.put(1, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_2));
+        coinImages.put(2, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_3));
+        coinImages.put(3, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_4));
+        coinImages.put(4, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_5));
+        coinImages.put(5, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_6));
+        coinImages.put(6, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_7));
+        coinImages.put(7, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_8));
+        coinImages.put(8, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_9));
+        coinImages.put(9, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_10));
+        coinImages.put(10, BitmapFactory.decodeResource(getResources(), R.drawable.coin_skin_11));
 
 //        coinImages.put("text", BitmapFactory.decodeResource(getResources(), R.drawable.text));
 //        coinImages.put("fire", BitmapFactory.decodeResource(getResources(), R.drawable.fire));
@@ -136,10 +136,28 @@ public class GraphView extends View implements GraphObject {
 
 
                 String fillColor = element.getString("fillColor");
-                boolean useSkin = element.getBoolean("useSkin");
-                boolean isMust = element.getBoolean("isMust");
+                boolean useSkin = element.has("useSkin") && element.getBoolean("useSkin");
+                boolean isMust = element.has("isMust") && element.getBoolean("isMust");
 
                 sticks.add(new Stick(unit, start, end, parseColor(fillColor), useSkin, isMust));
+            } else if (element.getString("type").equals("coin")) {
+                Point2D position = new Point2D(element.getInt("indX"), element.getInt("indY"));
+
+                if (topLeft.x > position.x) topLeft.x = position.x;
+                if (topLeft.y > position.y) topLeft.y = position.y;
+
+                String innerColor = element.getString("innerColor");
+                String outerColor = element.getString("outerColor");
+
+                boolean cantMove = element.has("cantMove") && element.getBoolean("cantMove");
+
+                int skin = -1;
+                if (element.getBoolean("useSkin"))
+                    skin = element.getInt("skin");
+
+                Bitmap image = coinImages.containsKey(skin) ?
+                        coinImages.get(skin) : null;
+                coins.add(new Coin(unit, !cantMove, position, image, parseColor(innerColor), parseColor(outerColor)));
             }
         }
         originLocation = rawPoint(new Point2D(-topLeft.x+1, -topLeft.y+1));
