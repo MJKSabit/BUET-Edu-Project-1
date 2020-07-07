@@ -21,6 +21,9 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -77,6 +80,134 @@ public class MainActivity extends AppCompatActivity {
 
         String title = getResources().getString(R.string.title_placeholder);
         getSupportActionBar().setTitle(title);
+
+        String problemSchema = "{\n" +
+                "    \"bgColor\": \"0xffffffff\",\n" +
+                "    \"transX\": -2050.138769192783,\n" +
+                "    \"transY\": -2277.6358217084357,\n" +
+                "    \"indicatorColor\": \"0x32cd32ff\",\n" +
+                "    \"elements\": [\n" +
+                "      {\n" +
+                "        \"indTailY\": 23,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 21,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 25,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 21,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 23,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 23,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 23,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 21,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 25,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 23,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 25,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 21,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 23,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 23,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 25,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 23,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 23,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 25,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 23,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 23,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 27,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 21,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 25,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 21,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 27,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 23,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 27,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 21,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 27,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 25,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 27,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 23,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 25,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 25,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 23,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 25,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"indTailY\": 27,\n" +
+                "        \"fillColor\": \"0x0090ffff\",\n" +
+                "        \"indTailX\": 25,\n" +
+                "        \"isMust\": true,\n" +
+                "        \"indHeadY\": 25,\n" +
+                "        \"useSkin\": true,\n" +
+                "        \"indHeadX\": 25,\n" +
+                "        \"type\": \"matchStick\"\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"lineColor\": \"0x00ff00ff\",\n" +
+                "    \"zoom\": 500,\n" +
+                "    \"defaultMatchStick\": {\n" +
+                "      \"fillColor\": \"0x0090ffff\",\n" +
+                "      \"isMust\": true,\n" +
+                "      \"useSkin\": true\n" +
+                "    },\n" +
+                "    \"defaultCoin\": {\n" +
+                "      \"outerColor\": \"0x0090ffff\",\n" +
+                "      \"isMust\": true,\n" +
+                "      \"innerColor\": \"0x004588ff\"\n" +
+                "    },\n" +
+                "    \"lineOpacity\": 0.25\n" +
+                "  }";
+
+        try {
+            graphView.setBoardContent(new JSONObject(problemSchema));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 

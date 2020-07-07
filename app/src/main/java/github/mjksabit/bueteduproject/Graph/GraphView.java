@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,6 +15,10 @@ import android.view.ViewParent;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,6 +106,49 @@ public class GraphView extends View implements GraphObject {
 //        coinImages.put("fire", BitmapFactory.decodeResource(getResources(), R.drawable.fire));
 //        coinImages.put("fish", BitmapFactory.decodeResource(getResources(), R.drawable.fish));
 //        coinImages.put("bird", BitmapFactory.decodeResource(getResources(), R.drawable.bird));
+    }
+
+    public void setBoardContent(JSONObject problemSchema) throws JSONException {
+        String backgroundColor = problemSchema.getString("bgColor");
+        String lineColor = problemSchema.getString("lineColor");
+        double lineOpacity = problemSchema.getDouble("lineOpacity");
+
+        gridPaint.setColor(parseColor(lineColor));
+        gridPaint.setAlpha((int)(lineOpacity*255));
+
+        JSONArray elements = problemSchema.getJSONArray("elements");
+
+        Point2D topLeft = new Point2D(50, 50);
+        Point2D bottomRight = new Point2D(0, 0);
+
+        for (int i=0; i<elements.length(); i++) {
+            JSONObject element = elements.getJSONObject(i);
+
+            if (element.getString("type").equals("matchStick")) {
+                Point2D start = new Point2D(element.getInt("indHeadX"), element.getInt("indHeadY"));
+                Point2D end = new Point2D(element.getInt("indTailX"), element.getInt("indTailY"));
+                
+                if (topLeft.x > start.x) topLeft.x = start.x;
+                if (topLeft.x > end.x) topLeft.x = end.x;
+
+                if (topLeft.y > start.y) topLeft.y = start.y;
+                if (topLeft.y > end.y) topLeft.y = end.y;
+
+
+                String fillColor = element.getString("fillColor");
+                boolean useSkin = element.getBoolean("useSkin");
+                boolean isMust = element.getBoolean("isMust");
+
+                sticks.add(new Stick(unit, start, end, parseColor(fillColor), useSkin, isMust));
+            }
+        }
+        originLocation = rawPoint(new Point2D(-topLeft.x+1, -topLeft.y+1));
+
+        invalidate();
+    }
+
+    private int parseColor(String color) {
+        return Color.parseColor("#"+color.substring(2, 8));
     }
 
     public void setGridOff(boolean gridOff) {

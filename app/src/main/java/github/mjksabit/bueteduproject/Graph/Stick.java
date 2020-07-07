@@ -8,6 +8,7 @@ public class Stick extends ConcreteGraphObject {
 
     Point2D start, end;
     Paint linePaint, topPaint;
+    boolean useSkin = true;
 
     public Stick(boolean isMovable, float unit, Point2D start, Point2D end) {
         super(isMovable, unit);
@@ -18,6 +19,24 @@ public class Stick extends ConcreteGraphObject {
         linePaint.setColor(Color.parseColor("#FFFFB300"));
         linePaint.setStrokeWidth(20);
 
+        init();
+    }
+
+    public Stick(float unit, Point2D start, Point2D end, int fillColor, boolean useSkin, boolean isMovable) {
+        super(isMovable, unit);
+        this.start = start;
+        this.end = end;
+
+        this.useSkin = useSkin;
+
+        linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        linePaint.setColor(fillColor);
+        linePaint.setStrokeWidth(20);
+
+        init();
+    }
+
+    private void init() {
         topPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         topPaint.setColor(Color.parseColor("#FF9E2A07"));
     }
@@ -76,6 +95,6 @@ public class Stick extends ConcreteGraphObject {
         Point2D rawEnd = rawPoint(end, origin);
 
         canvas.drawLine(rawStart.x, rawStart.y, rawEnd.x, rawEnd.y, linePaint);
-        canvas.drawCircle(rawStart.x, rawStart.y, unit/4, topPaint);
+        if (useSkin) canvas.drawCircle(rawStart.x, rawStart.y, unit/4, topPaint);
     }
 }
