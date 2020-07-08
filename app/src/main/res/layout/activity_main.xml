@@ -161,19 +161,14 @@
         style="@style/HeaderText"
         android:text="@string/answer_text"/>
 
-    <LinearLayout
+    <github.mjksabit.bueteduproject.Answer.AnswerLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:id="@+id/answer_container"
         android:paddingLeft="@dimen/content_padding">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/answer_text"
-            android:textSize="@dimen/ans_text" />
-
-    </LinearLayout>
+    </github.mjksabit.bueteduproject.Answer.AnswerLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -187,6 +182,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"
+        android:onClick="checkAnswer"
         style="@style/Button" />
 
 </LinearLayout>

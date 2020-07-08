@@ -20,9 +20,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +32,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import github.mjksabit.bueteduproject.Answer.AnswerLayout;
 import github.mjksabit.bueteduproject.Graph.GraphView;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     ConstraintLayout graphHolder;
     ScrollView scrollQuestion;
+
+    AnswerLayout answerLayout;
 
     Animation addOpenAnimation;
     Animation addCloseAnimation;
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         graphView = findViewById(R.id.graph);
         graphHolder = findViewById(R.id.graph_holder);
         scrollQuestion = findViewById(R.id.scroll_ques);
-
+        answerLayout = findViewById(R.id.answer_container);
 
         addOpenAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.add_fab_open);
         addCloseAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.add_fab_close);
@@ -343,6 +348,12 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        try {
+            answerLayout.setAsMCQ(new JSONArray("[\"1\", \"2\", \"3\", \"4\"]"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void toggleAddFAB(View view) {
@@ -383,5 +394,9 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.setCancelable(true);
         dialog.show();
+    }
+
+    public void checkAnswer(View v) {
+        Toast.makeText(getApplicationContext(), answerLayout.getAsText(), Toast.LENGTH_SHORT).show();
     }
 }
