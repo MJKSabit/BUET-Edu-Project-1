@@ -6,13 +6,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
@@ -175,25 +180,22 @@ public class GraphView extends View implements GraphObject {
         originLocation = rawPoint(new Point2D(-topLeft.x+1, -topLeft.y+1));
 
         invalidate();
-
-        JSONObject defaultCoin = problemSchema.getJSONObject("defaultCoin");
-        setDefaultCoin(defaultCoin.getBoolean("useSkin"), defaultCoin.getInt("skin"), defaultCoin.getString("innerColor"), defaultCoin.getString("outerColor"));
-
-        JSONObject defaultStick = problemSchema.getJSONObject("defaultMatchStick");
-        setDefaultStick(defaultStick.getBoolean("useSkin"), defaultStick.getString("fillColor"));
     }
 
-    public Bitmap setDefaultStick(boolean useSkin, String skinColor) {
+    public Drawable setDefaultStick(boolean useSkin, String skinColor) {
         defaultStickUseSkin = useSkin;
         defaultStickFillColor = parseColor(skinColor);
 
-        return null;
+        Drawable image = useSkin ? getContext().getResources().getDrawable(R.drawable.match_stick) : getContext().getResources().getDrawable(R.drawable.match_stick_without_skin);
+        return image;
     }
 
     public Bitmap setDefaultCoin(boolean useSkin, int skinNo, String innerColor, String outerColor) {
         defaultCoinUseSkin = useSkin ? skinNo : -1;
         defaultCoinInnerColor = parseColor(innerColor);
         defaultCoinOuterColor = parseColor(outerColor);
+
+        if (defaultCoinUseSkin != -1) return coinImages.get(defaultCoinUseSkin);
 
         return null;
     }

@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.DragEvent;
@@ -312,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
                 "    \"defaultMatchStick\": {\n" +
                 "      \"fillColor\": \"0x0090ffff\",\n" +
                 "      \"isMust\": true,\n" +
-                "      \"useSkin\": true\n" +
+                "      \"useSkin\": false\n" +
                 "    },\n" +
                 "    \"defaultCoin\": {\n" +
                 "      \"outerColor\": \"0x0090ffff\",\n" +
@@ -325,7 +327,18 @@ public class MainActivity extends AppCompatActivity {
                 "  }";
 
         try {
-            graphView.setBoardContent(new JSONObject(problemSchema));
+            JSONObject probSchema = new JSONObject(problemSchema);
+            graphView.setBoardContent(probSchema);
+
+            JSONObject defaultStick = probSchema.getJSONObject("defaultMatchStick");
+            Drawable stick = graphView.setDefaultStick(defaultStick.getBoolean("useSkin"), defaultStick.getString("fillColor"));
+            addStick.setImageDrawable(stick);
+
+            JSONObject defaultCoin = probSchema.getJSONObject("defaultCoin");
+            Bitmap coin = graphView.setDefaultCoin(defaultCoin.getBoolean("useSkin"), defaultCoin.getInt("skin"), defaultCoin.getString("innerColor"), defaultCoin.getString("outerColor"));
+            if (coin != null)
+                addCoin.setImageBitmap(coin);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
