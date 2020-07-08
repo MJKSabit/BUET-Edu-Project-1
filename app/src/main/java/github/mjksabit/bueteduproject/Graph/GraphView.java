@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -43,6 +42,12 @@ public class GraphView extends View implements GraphObject {
 
     private Paint gridPaint;
     private boolean gridOff = false;
+
+    private int defaultCoinUseSkin;
+    private int defaultCoinInnerColor;
+    private int defaultCoinOuterColor;
+    private boolean defaultStickUseSkin;
+    private int defaultStickFillColor;
 
     public GraphView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -106,6 +111,13 @@ public class GraphView extends View implements GraphObject {
 //        coinImages.put("fire", BitmapFactory.decodeResource(getResources(), R.drawable.fire));
 //        coinImages.put("fish", BitmapFactory.decodeResource(getResources(), R.drawable.fish));
 //        coinImages.put("bird", BitmapFactory.decodeResource(getResources(), R.drawable.bird));
+
+        defaultCoinUseSkin = -1;
+        defaultCoinInnerColor = Color.parseColor("#FFF176");
+        defaultCoinOuterColor = Color.parseColor("#999176");
+
+        defaultStickUseSkin = true;
+        defaultStickFillColor = Color.parseColor("#FFF176");
     }
 
     public void setBoardContent(JSONObject problemSchema) throws JSONException {
@@ -163,6 +175,27 @@ public class GraphView extends View implements GraphObject {
         originLocation = rawPoint(new Point2D(-topLeft.x+1, -topLeft.y+1));
 
         invalidate();
+
+        JSONObject defaultCoin = problemSchema.getJSONObject("defaultCoin");
+        setDefaultCoin(defaultCoin.getBoolean("useSkin"), defaultCoin.getInt("skin"), defaultCoin.getString("innerColor"), defaultCoin.getString("outerColor"));
+
+        JSONObject defaultStick = problemSchema.getJSONObject("defaultMatchStick");
+        setDefaultStick(defaultStick.getBoolean("useSkin"), defaultStick.getString("fillColor"));
+    }
+
+    public Bitmap setDefaultStick(boolean useSkin, String skinColor) {
+        defaultStickUseSkin = useSkin;
+        defaultStickFillColor = parseColor(skinColor);
+
+        return null;
+    }
+
+    public Bitmap setDefaultCoin(boolean useSkin, int skinNo, String innerColor, String outerColor) {
+        defaultCoinUseSkin = useSkin ? skinNo : -1;
+        defaultCoinInnerColor = parseColor(innerColor);
+        defaultCoinOuterColor = parseColor(outerColor);
+
+        return null;
     }
 
     private int parseColor(String color) {
@@ -201,7 +234,10 @@ public class GraphView extends View implements GraphObject {
         lastLocationRaw = new Point2D( x - myLoc[0], y-myLoc[1]);
         Point2D point = gridPoint(lastLocationRaw);
 
-        currentObject = new Coin(true, unit, coinImages.get("1"), point);
+        Bitmap image = coinImages.containsKey(defaultCoinUseSkin) ?
+                coinImages.get(defaultCoinUseSkin) : null;
+
+        currentObject = new Coin(unit, true, point, image, defaultCoinInnerColor, defaultCoinOuterColor);
         coins.add((Coin) currentObject);
         invalidate();
 //        Toast.makeText(getContext(), point.toString(), Toast.LENGTH_SHORT).show();
@@ -221,7 +257,7 @@ public class GraphView extends View implements GraphObject {
         Point2D start = new Point2D( getGridPoint.x, getGridPoint.y-1);
         Point2D end = new Point2D(getGridPoint.x, getGridPoint.y+1);
 
-        currentObject = new Stick(true, unit, start, end);
+        currentObject = new Stick(unit, start, end, defaultStickFillColor, defaultStickUseSkin, true);
         sticks.add((Stick) currentObject);
         invalidate();
 //        Toast.makeText(getContext(), getGridPoint.toString(), Toast.LENGTH_SHORT).show();
