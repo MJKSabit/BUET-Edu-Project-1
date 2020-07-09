@@ -22,6 +22,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -48,11 +50,15 @@ public class MainActivity extends AppCompatActivity {
     ScrollView scrollQuestion;
 
     AnswerLayout answerLayout;
+    ChipGroup tagHolder;
 
     Animation addOpenAnimation;
     Animation addCloseAnimation;
     Animation addOpenDrawer;
     Animation addCloseDrawer;
+
+    private int answerType;
+    private String answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         graphHolder = findViewById(R.id.graph_holder);
         scrollQuestion = findViewById(R.id.scroll_ques);
         answerLayout = findViewById(R.id.answer_container);
+        tagHolder = findViewById(R.id.tags);
 
         addOpenAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.add_fab_open);
         addCloseAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.add_fab_close);
@@ -350,9 +357,13 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             answerLayout.setAsMCQ(new JSONArray("[\"1\", \"2\", \"3\", \"4\"]"));
+            answerType = AnswerLayout.ANSWER_MCQ;
+            answer = "2";
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        addTag("Okay");
 
     }
 
@@ -374,16 +385,20 @@ public class MainActivity extends AppCompatActivity {
                 addCoin.setVisibility(View.INVISIBLE);
                 addStick.setVisibility(View.INVISIBLE);
             }
-//            addToBoard.show();
         } else {
             addCoin.setVisibility(View.VISIBLE);
             addStick.setVisibility(View.VISIBLE);
             addCoin.startAnimation(addOpenDrawer);
             addStick.startAnimation(addOpenDrawer);
             addToBoard.startAnimation(addOpenAnimation);
-//            addToBoard.hide();
         }
         isOpen = !isOpen;
+    }
+
+    private void addTag(String tagText) {
+        Chip tag = new Chip(this);
+        tag.setText(tagText);
+        tagHolder.addView(tag);
     }
 
     public void showDetails(View v) {
@@ -397,6 +412,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkAnswer(View v) {
-        Toast.makeText(getApplicationContext(), answerLayout.getAsText(), Toast.LENGTH_SHORT).show();
+        switch (answerType) {
+            case AnswerLayout.ANSWER_TEXT:
+            case AnswerLayout.ANSWER_MCQ: {
+                if (answer.equals(answerLayout.getAsText()))
+                    Toast.makeText(this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "Wrong Answer", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case AnswerLayout.ANSWER_BOARD: {
+                Toast.makeText(this, "Check Board", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

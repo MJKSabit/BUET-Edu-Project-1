@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">#66BB6A</item>
+        <item name="colorAccent">#2196F3</item>
     </style>
 
     <style name="HeaderText" >
@@ -30,6 +30,11 @@
 
     <style name="Button">
         <item name="background">@drawable/button_background</item>
+        <item name="android:backgroundTint">#2196F3</item>
+    </style>
+
+    <style name="Base.Widget.MaterialComponents.Chip.Choice">
+        <item name="backgroundTint">#66BB6A</item>
     </style>
 
 </resources>
