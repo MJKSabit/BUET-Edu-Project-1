@@ -1,6 +1,7 @@
 package github.mjksabit.bueteduproject.Graph;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Point2D {
     private static float DELTA = 0.5f;
@@ -46,5 +47,14 @@ public class Point2D {
     @Override
     public String toString() {
         return "("+x+", "+y+")";
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof Point2D) {
+            Point2D right = (Point2D) obj;
+            return right.x == this.x && right.y == this.y;
+        }
+        return false;
     }
 }

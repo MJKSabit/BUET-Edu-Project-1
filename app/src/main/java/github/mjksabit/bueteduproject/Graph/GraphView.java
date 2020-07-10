@@ -174,7 +174,7 @@ public class GraphView extends View implements GraphObject {
 
                 Bitmap image = coinImages.containsKey(skin) ?
                         coinImages.get(skin) : null;
-                coins.add(new Coin(unit, !cantMove, position, image, parseColor(innerColor), parseColor(outerColor)));
+                coins.add(new Coin(unit, !cantMove, position, image, parseColor(innerColor), parseColor(outerColor), skin));
             }
         }
         originLocation = rawPoint(new Point2D(-topLeft.x+1, -topLeft.y+1));
@@ -239,7 +239,7 @@ public class GraphView extends View implements GraphObject {
         Bitmap image = coinImages.containsKey(defaultCoinUseSkin) ?
                 coinImages.get(defaultCoinUseSkin) : null;
 
-        currentObject = new Coin(unit, true, point, image, defaultCoinInnerColor, defaultCoinOuterColor);
+        currentObject = new Coin(unit, true, point, image, defaultCoinInnerColor, defaultCoinOuterColor, defaultCoinUseSkin);
         coins.add((Coin) currentObject);
         invalidate();
 //        Toast.makeText(getContext(), point.toString(), Toast.LENGTH_SHORT).show();
@@ -358,4 +358,32 @@ public class GraphView extends View implements GraphObject {
 
         return true;
     }
+
+    @Override
+    public boolean match(JSONObject object) throws JSONException {
+        JSONArray elements = object.getJSONArray("elements");
+
+        int i;
+        for (i=0; i<elements.length(); i++) {
+            JSONObject element = elements.getJSONObject(i);
+            if (element.has("cantMove") && element.getBoolean("cantMove")) continue;
+            if (element.getString("type").equals("coin")) {
+                int j=0;
+                for (; j<coins.size(); j++) {
+                    if (coins.get(j).match(element)) break;
+                }
+                if (j==coins.size()) break;
+            }
+            else {
+                int j=0;
+                for (; j<sticks.size(); j++) {
+                    if (sticks.get(j).match(element)) break;
+                }
+                if (j==sticks.size()) break;
+            }
+        }
+
+        return i==elements.length();
+    }
+
 }

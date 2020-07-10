@@ -1,5 +1,7 @@
 package github.mjksabit.bueteduproject.Graph;
 
+import android.graphics.Color;
+
 public abstract class ConcreteGraphObject implements GraphObject{
     protected boolean isMovable;
     protected float unit;
@@ -15,5 +17,10 @@ public abstract class ConcreteGraphObject implements GraphObject{
         this.isMovable = isMovable;
         this.unit = unit;
     }
+
+    protected int parseColor(String color) {
+        return Color.parseColor("#"+color.substring(2, 8));
+    }
+
 
 }

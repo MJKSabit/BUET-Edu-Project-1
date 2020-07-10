@@ -2,6 +2,9 @@ package github.mjksabit.bueteduproject.Graph;
 
 import android.graphics.Canvas;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public interface GraphObject {
 
     // Check if this object is Tapped at Relative Touch Location
@@ -15,4 +18,7 @@ public interface GraphObject {
 
     // Draw Object to Canvas
     void drawSpecial(Canvas canvas, Point2D origin);
+
+    // Check if JSON Matches
+    public boolean match(JSONObject object) throws JSONException;
 }

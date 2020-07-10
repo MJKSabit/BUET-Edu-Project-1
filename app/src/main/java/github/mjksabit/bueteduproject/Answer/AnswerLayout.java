@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class AnswerLayout extends LinearLayout {
     public static final int ANSWER_TEXT = 1;
     public static final int ANSWER_MCQ = 2;
-    public static final int ANSWER_BOARD = 3;
+    public static final int ANSWER_BOARD = 0;
 
     private int VIEW_ID;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -57,7 +57,11 @@ public class AnswerLayout extends LinearLayout {
 
     public String getAsText() {
         if (answerType == ANSWER_TEXT) return ((EditText) findViewById(VIEW_ID)).getText().toString();
-        if (answerType == ANSWER_MCQ) return ((RadioButton) findViewById(((RadioGroup) findViewById(VIEW_ID)).getCheckedRadioButtonId())).getText().toString();
+        if (answerType == ANSWER_MCQ) {
+            int selectedId = ((RadioGroup) findViewById(VIEW_ID)).getCheckedRadioButtonId();
+            if (selectedId != View.NO_ID)
+                return ((RadioButton) findViewById(selectedId)).getText().toString();
+        }
         return null;
     }
 

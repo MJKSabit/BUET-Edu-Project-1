@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Stick extends ConcreteGraphObject {
 
     Point2D start, end;
@@ -96,5 +99,19 @@ public class Stick extends ConcreteGraphObject {
 
         canvas.drawLine(rawStart.x, rawStart.y, rawEnd.x, rawEnd.y, linePaint);
         if (useSkin) canvas.drawCircle(rawStart.x, rawStart.y, unit/4, topPaint);
+    }
+
+    @Override
+    public boolean match(JSONObject object) throws JSONException {
+        if (!object.has("type") && !object.getString("type").equals("matchStick")) return false;
+        if (!object.has("useSkin") && object.getBoolean("useSkin")!=useSkin) return false;
+        if (parseColor(object.getString("fillColor"))!=linePaint.getColor()) return false;
+
+        Point2D head = new Point2D(object.getInt("indHeadX"), object.getInt("indHeadY"));
+        Point2D tail = new Point2D(object.getInt("indTailX"), object.getInt("indTailY"));
+
+        if (!((start.equals(head) && end.equals(tail)) || (end.equals(head) && start.equals(tail)))) return false;
+
+        return true;
     }
 }
