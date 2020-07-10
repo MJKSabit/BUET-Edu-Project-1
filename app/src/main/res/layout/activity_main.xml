@@ -124,8 +124,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/statement_placeholder"
         style="@style/ContentText"
+        android:id="@+id/question_text"
         />
 
     <TextView
@@ -148,8 +148,7 @@
         android:layout_height="wrap_content"
         style="@style/WarningText"
         android:background="@drawable/warning_background"
-        android:id="@+id/answer_constrain"
-        android:text="@string/constrain_placeholder"/>
+        android:id="@+id/answer_constrain" />
 
     <Button
         android:layout_width="match_parent"
