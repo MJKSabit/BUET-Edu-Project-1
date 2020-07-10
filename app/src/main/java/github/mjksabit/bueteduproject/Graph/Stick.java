@@ -103,8 +103,8 @@ public class Stick extends ConcreteGraphObject {
 
     @Override
     public boolean match(JSONObject object) throws JSONException {
-        if (!object.has("type") && !object.getString("type").equals("matchStick")) return false;
-        if (!object.has("useSkin") && object.getBoolean("useSkin")!=useSkin) return false;
+        if (!object.has("type") || !object.getString("type").equals("matchStick")) return false;
+        if (object.has("useSkin") && object.getBoolean("useSkin")!=useSkin) return false;
         if (parseColor(object.getString("fillColor"))!=linePaint.getColor()) return false;
 
         Point2D head = new Point2D(object.getInt("indHeadX"), object.getInt("indHeadY"));

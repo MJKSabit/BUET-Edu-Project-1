@@ -74,7 +74,7 @@ public class Coin extends ConcreteGraphObject {
 
     @Override
     public boolean match(JSONObject object) throws JSONException {
-        if (!object.has("type") && !object.getString("type").equals("coin")) return false;
+        if (object.has("type") && !object.getString("type").equals("coin")) return false;
         if (!object.has("useSkin") && object.getBoolean("useSkin")){
             if (object.getInt("skin")!=coinSkin) return false;
         } else {
