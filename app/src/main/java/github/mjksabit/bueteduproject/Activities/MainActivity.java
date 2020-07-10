@@ -1,8 +1,5 @@
 package github.mjksabit.bueteduproject.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.graphics.Bitmap;
@@ -15,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,16 +23,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import github.mjksabit.bueteduproject.Answer.AnswerDialog;
 import github.mjksabit.bueteduproject.Answer.AnswerLayout;
 import github.mjksabit.bueteduproject.Answer.BoardMatcher;
 import github.mjksabit.bueteduproject.Graph.GraphView;
 import github.mjksabit.bueteduproject.R;
 import github.mjksabit.bueteduproject.Utils.Constant;
+
+import static github.mjksabit.bueteduproject.Utils.Constant.ANSWER_BOARD;
+import static github.mjksabit.bueteduproject.Utils.Constant.ANSWER_MCQ;
+import static github.mjksabit.bueteduproject.Utils.Constant.ANSWER_TEXT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -117,14 +117,14 @@ public class MainActivity extends AppCompatActivity {
             // Solution Type Setting
             answerType = question.getInt("ans_type");
 
-            if (answerType == AnswerLayout.ANSWER_TEXT) {
+            if (answerType == ANSWER_TEXT) {
                 // Set AnswerLayout to have a EditText
                 answerLayout.setAsText();
 
                 // Retrieve Answer from JSON
                 answer = question.getString("answer");
 
-            } else if (answerType == AnswerLayout.ANSWER_MCQ) {
+            } else if (answerType == ANSWER_MCQ) {
                 JSONArray options = question.getJSONArray("options");
 
                 // Set AnswerLayout to have multiple radio buttons
@@ -279,12 +279,12 @@ public class MainActivity extends AppCompatActivity {
         AnswerDialog dialog = new AnswerDialog(this, question.optString("explanation"));
         switch (answerType) {
             // Text and MCQ Checking Process is Same
-            case AnswerLayout.ANSWER_TEXT:
-            case AnswerLayout.ANSWER_MCQ: {
+            case ANSWER_TEXT:
+            case ANSWER_MCQ: {
                 dialog.showDialog(answer.equals(answerLayout.getAsText()));
                 break;
             }
-            case AnswerLayout.ANSWER_BOARD: {
+            case ANSWER_BOARD: {
                 // Match Board in New AsyncTask Thread
                 new BoardMatcher(dialog, graph, question.optJSONArray("sol_schema")).execute();
                 break;

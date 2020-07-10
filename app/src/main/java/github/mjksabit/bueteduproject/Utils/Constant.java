@@ -4,6 +4,13 @@ import android.graphics.Color;
 
 
 public interface Constant {
+    int ANSWER_TEXT = 1;
+    int ANSWER_MCQ = 2;
+    int ANSWER_BOARD = 0;
+
+    String RIGHT_ANS = "CORRECT ANSWER";
+    String WRONG_ANS = "WRONG ANSWER";
+
     String MATCH_STICK_TOP_COLOR = "#FF9E2A07";
 
     String[] CATEGORIES={"Algebra","Geometry","Number Theory","Combination","Circuit","Graph Theory","English","Others"};

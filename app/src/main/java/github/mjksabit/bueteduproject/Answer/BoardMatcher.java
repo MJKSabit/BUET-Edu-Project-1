@@ -1,6 +1,5 @@
 package github.mjksabit.bueteduproject.Answer;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -23,6 +22,8 @@ public class BoardMatcher extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
         int i;
+
+        // Match All Solutions
         for (i=0; i<solutions.length(); i++) {
             try {
                 JSONObject solution = solutions.getJSONObject(i);
@@ -32,12 +33,12 @@ public class BoardMatcher extends AsyncTask<Void, Void, Boolean> {
             }
         }
 
+        // If iterated Through all answers, no solutions found
         return i!=solutions.length();
     }
 
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         dialog.showDialog(aBoolean);
-        super.onPostExecute(aBoolean);
     }
 }

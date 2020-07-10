@@ -5,9 +5,10 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import static github.mjksabit.bueteduproject.Utils.Constant.RIGHT_ANS;
+import static github.mjksabit.bueteduproject.Utils.Constant.WRONG_ANS;
+
 public class AnswerDialog {
-    private final static String RIGHT_ANS = "CORRECT ANSWER";
-    private final static String WRONG_ANS = "WRONG ANSWER";
 
     private final Context context;
     private final String explanation;
@@ -26,6 +27,7 @@ public class AnswerDialog {
                 .setMessage(explanation)
                 .setCancelable(true);
 
+        // runOnUiThread
         new Handler(Looper.getMainLooper()).post(builder::show);
     }
 }

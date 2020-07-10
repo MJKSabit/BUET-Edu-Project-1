@@ -4,30 +4,29 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+
+import static github.mjksabit.bueteduproject.Utils.Constant.ANSWER_MCQ;
+import static github.mjksabit.bueteduproject.Utils.Constant.ANSWER_TEXT;
 
 public class AnswerLayout extends LinearLayout {
-    public static final int ANSWER_TEXT = 1;
-    public static final int ANSWER_MCQ = 2;
-    public static final int ANSWER_BOARD = 0;
 
+    // View ID of EditText, Radio Button
     private int VIEW_ID;
-    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+    // Default Layout Parameters
+    private LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+    // Defined AnswerType
     private int answerType;
-    private JSONObject options;
 
     public AnswerLayout(Context context) {
         super(context);
@@ -45,20 +44,30 @@ public class AnswerLayout extends LinearLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    // Set AnswerLayout to Have a TextEdit
     public void setAsText() {
         answerType = ANSWER_TEXT;
+
+        // Generate View ID
         VIEW_ID = View.generateViewId();
+
+        // Make Input TextField
         EditText answerTextBox = new EditText(getContext());
         answerTextBox.setLayoutParams(params);
         answerTextBox.setHint("Answer Here");
         answerTextBox.setId(VIEW_ID);
+
+        // Add to Answer Layout
         this.addView(answerTextBox, params);
     }
 
     public String getAsText() {
+        // Return TextField Text
         if (answerType == ANSWER_TEXT) return ((EditText) findViewById(VIEW_ID)).getText().toString();
         if (answerType == ANSWER_MCQ) {
             int selectedId = ((RadioGroup) findViewById(VIEW_ID)).getCheckedRadioButtonId();
+
+            // Check if Any Radio Button is Selected
             if (selectedId != View.NO_ID)
                 return ((RadioButton) findViewById(selectedId)).getText().toString();
         }
@@ -67,12 +76,17 @@ public class AnswerLayout extends LinearLayout {
 
     public void setAsMCQ(JSONArray options) throws JSONException {
         answerType = ANSWER_MCQ;
+
+        // Generate View ID
         VIEW_ID = View.generateViewId();
+
+        // Create RadioGroup To Hold Radio Buttons
         RadioGroup group = new RadioGroup(getContext());
         group.setLayoutParams(params);
         group.setOrientation(RadioGroup.VERTICAL);
         group.setId(VIEW_ID);
 
+        // Add Radio Buttons from Options
         for (int i=0; i<options.length(); i++) {
             RadioButton button = new RadioButton(getContext());
             button.setText(options.getString(i));
