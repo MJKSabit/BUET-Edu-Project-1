@@ -18,6 +18,10 @@ public abstract class ConcreteGraphObject implements GraphObject{
         this.unit = unit;
     }
 
+    public void setUnit(float unit) {
+        this.unit = unit;
+    }
+
     protected int parseColor(String color) {
         return Color.parseColor("#"+color.substring(2, 8));
     }

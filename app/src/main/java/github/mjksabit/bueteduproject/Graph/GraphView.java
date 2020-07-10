@@ -9,7 +9,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
 import android.view.ViewParent;
 
@@ -42,6 +45,8 @@ public class GraphView extends View implements GraphObject {
 
     // PixelsPerUnit
     private float unit;
+    private float maxUnit;
+    private float minUnit;
 
     private Paint   background      = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint   gridLinePaint   = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -67,6 +72,9 @@ public class GraphView extends View implements GraphObject {
     private void init() {
         // 10 * 10 squares is shown in Screen At a Time
         this.unit = getContext().getResources().getDisplayMetrics().widthPixels / 10.0f;
+
+        maxUnit = unit*10;
+        minUnit = unit/10;
 
         gridLinePaint.setColor(0x99FF0000);
 
@@ -357,6 +365,39 @@ public class GraphView extends View implements GraphObject {
 
     }
 
+    private class ScaleGesture extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScaleBegin(ScaleGestureDetector detector) {
+            scaling = true;
+            return true;
+        }
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+
+            Point2D prevPoint = gridPoint(new Point2D(detector.getFocusX(), detector.getFocusY()));
+            unit = unit*detector.getScaleFactor();
+            unit = Math.min(unit, maxUnit);
+            unit = Math.max(unit, minUnit);
+            Point2D endPoint = gridPoint(new Point2D(detector.getFocusX(), detector.getFocusY()));
+
+            originLocation = new Point2D(originLocation.x - unit*(prevPoint.x-endPoint.x), originLocation.y - unit*(prevPoint.y-endPoint.y));
+
+            for (Coin coin : coins) coin.setUnit(unit);
+            for (Stick stick : sticks) stick.setUnit(unit);
+
+            return true;
+        }
+
+        @Override
+        public void onScaleEnd(ScaleGestureDetector detector) {
+            scaling = false;
+        }
+    }
+
+    private boolean scaling = false;
+    private ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleGesture());
+
     // Used for Currently Moving Object
     private GraphObject currentObject;
 
@@ -366,7 +407,9 @@ public class GraphView extends View implements GraphObject {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        scaleGestureDetector.onTouchEvent(event);
 
+        if (!scaling)
         switch (event.getAction()) {
 
             // New Touch Detected
