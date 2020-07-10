@@ -12,14 +12,7 @@ public class Coin extends ConcreteGraphObject {
     private Bitmap image;
     Point2D location;
     Paint outerPaint, innerPaint;
-    private int coinSkin;
-
-    public Coin(boolean isMovable, float unit, Bitmap image, Point2D location) {
-        super(isMovable, unit);
-        this.image = image;
-        this.location = location;
-        init();
-    }
+    int coinSkin;
 
     private void init() {
         outerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -75,7 +68,7 @@ public class Coin extends ConcreteGraphObject {
     @Override
     public boolean match(JSONObject object) throws JSONException {
         if (object.has("type") && !object.getString("type").equals("coin")) return false;
-        if (!object.has("useSkin") && object.getBoolean("useSkin")){
+        if (object.has("useSkin") && object.getBoolean("useSkin")){
             if (object.getInt("skin")!=coinSkin) return false;
         } else {
             if (parseColor(object.getString("innerColor"))!=innerPaint.getColor() || parseColor(object.getString("outerColor"))!=outerPaint.getColor())

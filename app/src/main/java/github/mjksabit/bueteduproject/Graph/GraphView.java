@@ -245,10 +245,6 @@ public class GraphView extends View implements GraphObject {
 //        Toast.makeText(getContext(), point.toString(), Toast.LENGTH_SHORT).show();
     }
 
-    public void addCoin(Point2D gridPoint, String imageName, boolean isMoveable) {
-        coins.add(new Coin(isMoveable, unit, coinImages.get(imageName), gridPoint));
-    }
-
     public void addStick(float x, float y) {
         int[] myLoc = new int[2];
         getLocationOnScreen(myLoc);
@@ -370,7 +366,10 @@ public class GraphView extends View implements GraphObject {
             if (element.getString("type").equals("coin")) {
                 int j=0;
                 for (; j<coins.size(); j++) {
-                    if (coins.get(j).match(element)) break;
+                    if (coins.get(j).match(element)) {
+                        Log.d(TAG, "matchCoin: " + coins.get(j).location + " :: Skin " + coins.get(j).coinSkin);
+                        break;
+                    }
                 }
                 if (j==coins.size()) break;
             }
