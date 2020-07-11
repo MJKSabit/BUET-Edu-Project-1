@@ -9,10 +9,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
 import android.view.ViewParent;
 
@@ -368,7 +366,7 @@ public class GraphView extends View implements GraphObject {
     private class ScaleGesture extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            scaling = true;
+            scalingStarted = true;
             return true;
         }
 
@@ -391,11 +389,11 @@ public class GraphView extends View implements GraphObject {
 
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
-            scaling = false;
+
         }
     }
 
-    private boolean scaling = false;
+    private boolean scalingStarted = false;
     private ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleGesture());
 
     // Used for Currently Moving Object
@@ -409,7 +407,7 @@ public class GraphView extends View implements GraphObject {
     public boolean onTouchEvent(MotionEvent event) {
         scaleGestureDetector.onTouchEvent(event);
 
-        if (!scaling)
+        if (!(scaleGestureDetector.isInProgress() || event.getPointerCount() > 1) || (scalingStarted && event.getAction()==MotionEvent.ACTION_UP))
         switch (event.getAction()) {
 
             // New Touch Detected
@@ -449,7 +447,8 @@ public class GraphView extends View implements GraphObject {
 
                 // Move Currently Selected Object from last Location to Current Location
                 // Relative Grid Point is Provided using gridPoint()
-                currentObject.move(gridPoint(lastLocationRaw), gridPoint(currentLocationRaw));
+                // If Scale Gesture Used, Ignore Moving
+                if (!scalingStarted) currentObject.move(gridPoint(lastLocationRaw), gridPoint(currentLocationRaw));
 
                 lastLocationRaw = currentLocationRaw;
 
@@ -462,6 +461,9 @@ public class GraphView extends View implements GraphObject {
 
                 // No Object to move
                 currentObject = null;
+
+                // End Scale Gesture Effect, No Touch on Screen
+                scalingStarted = false;
 
                 break;
             }

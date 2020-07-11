@@ -28,10 +28,6 @@ public class Stick extends ConcreteGraphObject {
         linePaint.setColor(fillColor);
         lineCornerPaint.setColor(fillColor);
 
-        // Stick Line Width is 1/6 of Unit
-        lineWidth = unit/5;
-        linePaint.setStrokeWidth(lineWidth);
-
         topPaint.setColor(Color.parseColor(Constant.MATCH_STICK_TOP_COLOR));
     }
 
@@ -94,6 +90,10 @@ public class Stick extends ConcreteGraphObject {
 
     @Override
     public void drawSpecial(Canvas canvas, Point2D origin) {
+        // Stick Line Width is 1/6 of Unit
+        lineWidth = unit/5;
+        linePaint.setStrokeWidth(lineWidth);
+
         Point2D rawStart = rawPoint(start, origin);
         Point2D rawEnd = rawPoint(end, origin);
 
